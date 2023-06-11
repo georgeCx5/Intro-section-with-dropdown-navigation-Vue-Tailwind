@@ -3,6 +3,8 @@ import imgMobile from '@/assets/images/image-hero-mobile.png';
 import imgDesktop from '@/assets/images/image-hero-desktop.png';
 import UpperButtons from '@/components/UpperBtn.vue';
 import BrandLogo from '@/components/BrandLogo.vue';
+import ArrowUp from '@/assets/images/icon-arrow-up.svg?component';
+import ArrowDown from '@/assets/images/icon-arrow-down.svg?component';
 
 export default {
   data() {
@@ -13,6 +15,8 @@ export default {
       imgMobile,
       imgDesktop,
       showBar: false,
+      ArrowUp,
+      ArrowDown,
     }
   },
   components: {
@@ -27,15 +31,16 @@ export default {
 }
 </script>
 <template>
-  <body class=" relative flex flex-col items-center gap-6 font-epilogue">
+  <body class=" relative flex flex-col items-center gap-6 DT:gap-16 h-screen DT:h-full bg-neo-white font-epilogue">
     <!-- Close Menu -->
     <div v-show="showBar"
-      class=" DT:hidden absolute right-0 flex flex-col gap-8 w-[240px] h-screen pt-[78px] px-6 bg-neo-white text-neo-gray text-[16px] leading-[26px] font-medium z-10">
+      class=" absolute right-0 DT:hidden flex flex-col gap-8 w-[240px] h-screen pt-[78px] px-6 bg-neo-white text-neo-gray text-[16px] leading-[26px] font-medium z-10">
       <div @click="barState()"
         :class="` absolute top-[22px] right-[22px] w-[24px] h-[24px] bg-contain ${iconCloseMenu} cursor-pointer`">
       </div>
       <div class=" flex flex-col items-start gap-4">
-        <UpperButtons />
+        <UpperButtons btnText="Features" />
+        <UpperButtons btnText="Company" />
         <button class=" hover:text-neo-black">Careers</button>
         <button class=" hover:text-neo-black">About</button>
       </div>
@@ -50,15 +55,30 @@ export default {
     <div v-show="showBar" class=" DT:hidden absolute w-screen h-screen bg-neo-black bg-opacity-[.75] pointer-events-none">
     </div>
     <!-- - -->
-    <nav class=" flex justify-between items-center w-full h-[35px] mt-[16px] px-[16px]">
-      <div :class="` w-[87px] h-[28px] bg-contain ${logo}`"></div>
+    <nav
+      class=" flex justify-between item-center w-full h-[35px] DT:text-[14px] DT:leading-[16px] mt-[20px] DT:mt-[32px] px-[16px] DT:px-[40px] text-neo-gray font-medium">
+      <div class=" flex gap-[62px]">
+        <div :class="` w-[87px] h-[28px] bg-contain ${logo}`"></div>
+        <div class=" hidden DT:flex DT:items-center gap-10">
+          <UpperButtons btnText="Features" />
+          <UpperButtons btnText="Company" />
+          <button class=" hover:text-neo-black">Careers</button>
+          <button class=" hover:text-neo-black">About</button>
+        </div>
+      </div>
+      <div class=" hidden DT:flex flex-col DT:flex-row items-center gap-4 DT:gap-10 text-[14px] leading-[16px]">
+        <button class=" hover:text-neo-black">Login</button>
+        <button
+          class=" w-full DT:w-[104px] h-[42px] hover:text-neo-black outline outline-[1.5px] outline-neo-gray hover:outline-neo-black rounded-[14px]">Register</button>
+      </div>
       <!-- Open Menu -->
       <div @click="barState()" v-show="!showBar"
         :class="` DT:hidden w-[28px] h-[18px] bg-cover ${iconMenu} cursor-pointer`">
       </div>
       <!-- - -->
     </nav>
-    <main class=" flex flex-col DT:flex-row-reverse items-center DT:items-end gap-12 w-fit">
+    <main
+      class=" flex flex-col DT:flex-row-reverse items-center DT:items-end gap-12 DT:gap-[125px] SDT:gap-[260px] w-fit pb-[94px] DT:pb-[130px]">
       <img class=" DT:hidden w-[375px]" :src="imgMobile" draggable="false" alt="imgMobile">
       <img class=" hidden DT:block w-[480px]" :src="imgDesktop" draggable="false" alt="imgDesktop">
       <div class=" flex flex-col gap-12 DT:gap-[108px] w-[343px] DT:w-[540px]">
